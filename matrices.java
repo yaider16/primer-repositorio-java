@@ -15,31 +15,47 @@ public class matrices {
         String[][] matriz = new String[altura][anchura];
 
         if (des == 1) {
-            for (int i = 0; i < altura; i++) {
-                for (int j = 0; j < anchura; j++) {
-                    matriz[i][j] = "0";
-                }
+            matriz = cerrado(matriz);
+        } else {
+            matriz = abierto(matriz);
+        }
+
+        imprimirMatriz(matriz);
+        sc.close();
+    }
+
+    public static String[][] cerrado(String[][] matriz) {
+
+        for (int i = 0; i < matriz.length; i++) {
+
+            for (int j = 0; j < matriz[0].length; j++) {
+                matriz[i][j] = "0";
             }
-        } else{
-            for (int i = 0; i < altura; i++) {
-                for (int j = 0; j < anchura; j++) {
+        }
+        return matriz;
+    }
+    public static String[][] abierto(String[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
 
-                    if (i == 0 || j == 0 || i == altura - 1 || j == anchura - 1) {
-                        matriz[i][j] = "0";
-                    } else {
-                        matriz[i][j] = " ";
-                    }
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (i == 0 || j == 0 || i == matriz.length - 1 || j == matriz[0].length - 1) {
 
+                    matriz[i][j] = "0";
+                } else {
+                    matriz[i][j] = " ";
                 }
             }
         }
 
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < anchura; j++) {
+        return matriz;
+    }
+    public static void imprimirMatriz(String[][] matriz){
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
                 System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
         }
-        sc.close();
     }
+
 }
